@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ApimServiceName": {
+      "type": "string"
+    },
+    "PolicyXMLBaseUrl": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "properties": {
+        "description": "Product with High privilege access to APIs",
+        "subscriptionRequired": true,
+        "approvalRequired": false,
+        "state": "notPublished",
+        "displayName": "High Privileged Product"
+      },
+      "name": "[concat(parameters('ApimServiceName'), '/high-privileged-product')]",
+      "type": "Microsoft.ApiManagement/service/products",
+      "apiVersion": "2019-01-01"
+    },
+    {
+      "properties": {
+        "description": "Product with low privilege access to product",
+        "subscriptionRequired": true,
+        "approvalRequired": false,
+        "state": "notPublished",
+        "displayName": "Low Privileged Product"
+      },
+      "name": "[concat(parameters('ApimServiceName'), '/low-privileged-product')]",
+      "type": "Microsoft.ApiManagement/service/products",
+      "apiVersion": "2019-01-01"
+    }
+  ]
+}
